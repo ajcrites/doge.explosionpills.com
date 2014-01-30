@@ -1,0 +1,24 @@
+/* CSS declarations go here */
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+#such-doge {
+    background: url(/doge.jpg) no-repeat center fixed;
+    background-size: 100% 100%;
+    font-family: "Comic Sans MS";
+    height: 100%;
+    font-size: 200%;
+}
+input {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    outline: 0;
+    font-family: "Comic Sans MS";
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
