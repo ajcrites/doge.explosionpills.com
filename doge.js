@@ -23,20 +23,24 @@ if (Meteor.isClient) {
             };
 
             $("<input>", {
-                css: css
+                css: css,
+                maxlength: 50
             })
                 .appendTo("#such-doge")
                 .trigger("focus")
                 .on("blur", function () {
-                    $(this).replaceWith(function () {
-                        var div = {
-                            css: css,
-                            text: this.value
-                        };
+                    var div = {
+                        css: css,
+                        text: this.value
+                    };
 
-                        wow.insert(div);
-                        return $("<div>", div);
+                    wow.insert(div, function (err) {
+                        if (err) {
+                            alert("wow.  such error.  too keywords");
+                        }
                     });
+
+                    $(this).remove();
                 })
                 .on("keypress", function (evt) {
                     if (evt.keyCode == 13) {
@@ -45,5 +49,25 @@ if (Meteor.isClient) {
                 });
             ;
         }
+    });
+}
+
+if (Meteor.isServer) {
+    wow.allow({
+        insert: function (_, doc) {
+            if (!doc.hasOwnProperty("text")) {
+                return false;
+            }
+            return doc.hasOwnProperty("text")
+                && doc.text.length <= 50
+                && (
+                    /^wow$/.test(doc.text)
+                    || /^so /.test(doc.text)
+                    || /^such /.test(doc.text)
+                    || /^much /.test(doc.text)
+                    || /^too /.test(doc.text)
+                    || /^very /.test(doc.text)
+                );
+        },
     });
 }
