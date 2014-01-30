@@ -8,9 +8,7 @@ if (Meteor.isClient) {
     };
 
     Template["such-doge"].much_doge = function () {
-        setTimeout(function () {
-            $("<div>", this).appendTo("#such-doge");
-        }.bind(this), 10);
+        return $("<div>", this)[0].outerHTML;
     };
 
     Template["such-doge"].events({
