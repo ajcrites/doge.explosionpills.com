@@ -60,11 +60,7 @@ if (Meteor.isServer) {
                 && doc.text.length <= 50
                 && (
                     /^wow$/.test(doc.text)
-                    || /^so /.test(doc.text)
-                    || /^such /.test(doc.text)
-                    || /^much /.test(doc.text)
-                    || /^too /.test(doc.text)
-                    || /^very /.test(doc.text)
+                    || /^(so|(s|m)uch|too|very|many) (\w+ )*(\w+)$/.test(doc.text)
                 );
         },
     });
