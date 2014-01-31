@@ -4,7 +4,7 @@ if (Meteor.isClient) {
     var much_colors = ["red", "#00ff00", "aqua", "yellow", "fuchsia"];
 
     Template["such-doge"].doge = function () {
-        return wow.find({}, {fields: {_id: 0}});
+        return wow.find({}, {sort: {dogetime: -1}, limit: 30});
     };
 
     Template["such-doge"].much_doge = function () {
@@ -27,16 +27,19 @@ if (Meteor.isClient) {
                 .appendTo("#such-doge")
                 .trigger("focus")
                 .on("blur", function () {
-                    var div = {
-                        css: css,
-                        text: this.value
-                    };
+                    if (this.value.length) {
+                        var div = {
+                            css: css,
+                            text: this.value,
+                            dogetime: new Date
+                        };
 
-                    wow.insert(div, function (err) {
-                        if (err) {
-                            alert("wow.  such error.  too keywords");
-                        }
-                    });
+                        wow.insert(div, function (err) {
+                            if (err) {
+                                alert("wow.  such error.  too keywords");
+                            }
+                        });
+                    }
 
                     $(this).remove();
                 })
