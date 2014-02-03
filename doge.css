@@ -22,3 +22,6 @@ input {
     margin: 0;
     padding: 0;
 }
+#such-doge div {
+    white-space: nowrap;
+}
