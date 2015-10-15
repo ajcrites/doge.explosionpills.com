@@ -78,7 +78,7 @@ DogeMaker = React.createClass({
     },
     handleBlur() {
         let text = React.findDOMNode(this.refs.wow).value.trim();
-        wow.insert({text: text, style: this.props.style}, function (err) {
+        wow.insert({text, style: this.props.style, dogetime: new Date}, function (err) {
             if (err) {
                 alert("wow. such error. too keywords");
             }
