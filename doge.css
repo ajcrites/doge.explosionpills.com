@@ -22,8 +22,9 @@ input {
     margin: 0;
     padding: 0;
 }
-#such-doge div {
+#such-doge {
     white-space: nowrap;
+    min-height: 100%;
 }
 .too-text {
     position: absolute;
