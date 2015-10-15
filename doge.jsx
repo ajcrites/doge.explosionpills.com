@@ -50,15 +50,17 @@ Doge = React.createClass({
             },
         });
     },
-    handleBlur() {
-        console.log("i was called");
+    hideInput() {
+        this.setState({
+            showDogeMaker: false,
+        });
     },
     render() {
         let dogeMaker;
         if (this.state.showDogeMaker) {
             dogeMaker = (
                 <DogeMaker style={this.state.dogeState}
-                    onBlur={this.handleBlur} />
+                    doneFn={this.hideInput} />
             );
         }
         return (
@@ -75,11 +77,22 @@ DogeMaker = React.createClass({
         React.findDOMNode(this.refs.wow).focus();
     },
     handleBlur() {
-        this.props.onBlur();
+        let text = React.findDOMNode(this.refs.wow).value.trim();
+        wow.insert({text: text, style: this.props.style}, function (err) {
+            if (err) {
+                alert("wow. such error. too keywords");
+            }
+        });
+        this.props.doneFn();
+    },
+    handleKeypress(event) {
+        if ("Enter" === event.key) {
+            React.findDOMNode(this.refs.wow).blur();
+        }
     },
     render() {
         return <input className="too-text" ref="wow" style={this.props.style}
-            onBlur={this.handleBlur} />
+            onBlur={this.handleBlur} onKeyPress={this.handleKeypress} />
     },
 });
 
