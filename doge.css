@@ -4,7 +4,7 @@ html, body {
     margin: 0;
     overflow: hidden;
 }
-#such-doge {
+#wow {
     background: url(/doge.jpg) no-repeat center fixed;
     background-size: 100% 100%;
     font-family: "Comic Sans MS";
@@ -24,4 +24,7 @@ input {
 }
 #such-doge div {
     white-space: nowrap;
+}
+.too-text {
+    position: absolute;
 }
